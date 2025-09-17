@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    image: videojuegos-site:latest
+    container_name: videojuegos_web
+    ports:
+      - "8083:3000"
+    environment:
+      - PORT=3000
+      - TWILIO_ACCOUNT_SID=AC0036f14a3d15231db7ee5c7a47819db5
+      - TWILIO_AUTH_TOKEN=77865a55a27c5baf1bfef65d2313270f
+      - TWILIO_WHATSAPP_FROM=whatsapp:+14155238886
+    volumes:
+      - ./public/img:/app/public/img:ro
+    restart: unless-stopped
+
+
