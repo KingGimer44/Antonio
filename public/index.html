@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catálogo de Videojuegos</title>
+    <meta name="description" content="Explora, filtra y guarda tus videojuegos favoritos" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="site-title">🎮 Catálogo de Videojuegos</h1>
+        <div class="header-actions">
+          <button id="themeToggle" class="btn" aria-pressed="false" aria-label="Cambiar modo de color">🌙</button>
+          <label class="fav-toggle">
+            <input type="checkbox" id="onlyFavorites" />
+            <span>Solo favoritos</span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="controls" aria-label="Controles de filtrado y ordenación">
+        <div class="control">
+          <label for="search">Buscar</label>
+          <input id="search" type="search" placeholder="Buscar por título..." />
+        </div>
+        <div class="control">
+          <label for="genre">Género</label>
+          <select id="genre">
+            <option value="">Todos</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="sort">Ordenar</label>
+          <select id="sort">
+            <option value="rating-desc">Puntuación ↓</option>
+            <option value="year-desc">Año ↓</option>
+            <option value="title-asc">Título A→Z</option>
+          </select>
+        </div>
+      </section>
+
+      <section id="grid" class="grid" aria-live="polite" aria-busy="false"></section>
+    </main>
+
+    <dialog id="detailsModal" class="modal">
+      <article class="modal-content" role="document">
+        <button id="closeModal" class="btn btn-ghost close" aria-label="Cerrar">✕</button>
+        <div class="modal-body">
+          <img id="modalCover" alt="Portada del juego" />
+          <div class="modal-text">
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc" class="muted"></p>
+            <ul class="meta">
+              <li><strong>Año:</strong> <span id="modalYear"></span></li>
+              <li><strong>Género:</strong> <span id="modalGenre"></span></li>
+              <li><strong>Plataformas:</strong> <span id="modalPlatforms"></span></li>
+              <li><strong>Puntuación:</strong> <span id="modalRating"></span> ⭐</li>
+            </ul>
+            <div class="wa">
+              <label for="waNumber">Enviar por WhatsApp</label>
+              <div class="wa-row">
+                <input id="waNumber" type="tel" inputmode="tel" placeholder="+521234567890" />
+                <button id="sendWhatsAppBtn" class="btn">Enviar</button>
+              </div>
+              <p class="muted small">Formato: +<em>código_pais</em><em>número</em></p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </dialog>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small> - Catálogo de Videojuegos</small>
+      </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+  </html>
+
+
