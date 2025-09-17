@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Catálogo de Videojuegos</title>
+    <title>Catálogo de VideoJuegos</title>
     <meta name="description" content="Explora, filtra y guarda tus videojuegos favoritos" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,12 +13,17 @@
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <h1 class="site-title">🎮 Catálogo de Videojuegos</h1>
+        <h1 class="site-title">🎮 Catálogo de VideoJuegos</h1>
         <div class="header-actions">
           <button id="themeToggle" class="btn" aria-pressed="false" aria-label="Cambiar modo de color">🌙</button>
+          <div class="cart-info">
+            <span id="cartCount" class="cart-count">0</span>
+            <span id="cartTotal" class="cart-total">$0.00</span>
+            <button id="viewCartBtn" class="btn cart-btn" disabled>Ver Carrito</button>
+          </div>
           <label class="fav-toggle">
             <input type="checkbox" id="onlyFavorites" />
-            <span>Solo favoritos</span>
+            <span>Solo en carrito</span>
           </label>
         </div>
       </div>
@@ -63,6 +68,16 @@
               <li><strong>Plataformas:</strong> <span id="modalPlatforms"></span></li>
               <li><strong>Puntuación:</strong> <span id="modalRating"></span> ⭐</li>
             </ul>
+            <div class="cart-controls">
+              <label for="quantity">Cantidad</label>
+              <div class="quantity-row">
+                <button id="decreaseQty" class="btn qty-btn">-</button>
+                <input id="quantity" type="number" min="1" max="10" value="1" />
+                <button id="increaseQty" class="btn qty-btn">+</button>
+                <button id="addToCartBtn" class="btn">Agregar al Carrito</button>
+                <button id="removeFromCartBtn" class="btn btn-ghost" style="display: none;">Quitar del Carrito</button>
+              </div>
+            </div>
             <div class="wa">
               <label for="waNumber">Enviar por WhatsApp</label>
               <div class="wa-row">
@@ -70,6 +85,41 @@
                 <button id="sendWhatsAppBtn" class="btn">Enviar</button>
               </div>
               <p class="muted small">Formato: +<em>código_pais</em><em>número</em></p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </dialog>
+
+    <dialog id="cartModal" class="modal">
+      <article class="modal-content" role="document">
+        <button id="closeCartModal" class="btn btn-ghost close" aria-label="Cerrar">✕</button>
+        <div class="modal-body">
+          <h2>🛒 Carrito de Compras</h2>
+          <div id="cartItems" class="cart-items">
+            <!-- Los items del carrito se cargarán aquí dinámicamente -->
+          </div>
+          <div class="cart-summary">
+            <div class="total-row">
+              <span>Total de items:</span>
+              <span id="cartItemsTotal">0</span>
+            </div>
+            <div class="total-row">
+              <span>Total a pagar:</span>
+              <span id="cartPriceTotal">$0.00</span>
+            </div>
+          </div>
+          <div class="checkout-section">
+            <div class="wa-checkout">
+              <label for="waNumberCheckout">Número de WhatsApp para confirmar compra</label>
+              <div class="wa-row">
+                <input id="waNumberCheckout" type="tel" inputmode="tel" placeholder="+521234567890" />
+                <button id="checkoutBtn" class="btn btn-primary">Comprar y Enviar</button>
+              </div>
+              <p class="muted small">Formato: +<em>código_pais</em><em>número</em></p>
+            </div>
+            <div class="cart-actions">
+              <button id="clearCartBtn" class="btn btn-ghost">Vaciar Carrito</button>
             </div>
           </div>
         </div>
@@ -85,5 +135,6 @@
     <script src="app.js" defer></script>
   </body>
   </html>
+
 
 
